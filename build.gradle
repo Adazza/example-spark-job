@@ -6,9 +6,11 @@
  * user guide available at https://docs.gradle.org/3.3/userguide/scala_plugin.html
  */
 
+group = 'com.adazza.spark.example-job'
 
 //apply from: 'https://raw.githubusercontent.com/adazza/adazza-gradle/master/adazza-spark-job.gradle'
 apply from: '../adazza-gradle/adazza-spark-job.gradle'
 //apply from: 'https://raw.githubusercontent.com/adazza/adazza-gradle/master/adazza-dependency-management.gradle'
 apply from: '../adazza-gradle/adazza-dependency-management.gradle'
+
 
