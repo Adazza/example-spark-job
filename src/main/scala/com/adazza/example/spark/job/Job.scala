@@ -27,8 +27,17 @@ object Job {
     c.describe("word")
     c.describe("count")
 
-    counts.saveAsTextFile(output)
-
+    c.write
+      .option("sep", ",")
+      .option("quote", "\"")
+      .option("escape", "\"")
+      .option("nullValue", "")
+      .option("dateFormat", "yyyy-MM-dd")
+      .option("timestampFormat", "yyyy-MM-dd'T'HH:mm:ss.SSSZZ")
+      .option("header", value = true)
+      .option("compression", "gzip")
+      .mode("overwrite")
+      .csv(output)
   }
 }
 
