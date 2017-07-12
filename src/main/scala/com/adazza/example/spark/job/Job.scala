@@ -14,12 +14,20 @@ object Job {
       .appName("Adazza Example JOb")
       .getOrCreate()
 
+    import sc.implicits._
+
     val textFile = sc.sparkContext.textFile(input)
     val counts = textFile.flatMap(line => line.split(" "))
       .map(word => (word, 1))
       .reduceByKey(_ + _)
 
+    val c = counts.toDF()
+
+    c.show(truncate = false)
+    c.describe()
+
     counts.saveAsTextFile(output)
+
   }
 }
 
