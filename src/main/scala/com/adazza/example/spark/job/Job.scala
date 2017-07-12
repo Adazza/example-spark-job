@@ -21,10 +21,11 @@ object Job {
       .map(word => (word, 1))
       .reduceByKey(_ + _)
 
-    val c = counts.toDF()
+    val c = counts.toDF("word", "count")
 
     c.show(truncate = false)
-    c.describe()
+    c.describe("word")
+    c.describe("count")
 
     counts.saveAsTextFile(output)
 
