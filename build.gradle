@@ -8,9 +8,26 @@
 
 group = 'com.adazza.spark.example-job'
 
-//apply from: 'https://raw.githubusercontent.com/adazza/adazza-gradle/master/adazza-spark-job.gradle'
-apply from: '../adazza-gradle/adazza-spark-job.gradle'
-//apply from: 'https://raw.githubusercontent.com/adazza/adazza-gradle/master/adazza-dependency-management.gradle'
-apply from: '../adazza-gradle/adazza-dependency-management.gradle'
+apply from: 'https://raw.githubusercontent.com/adazza/adazza-gradle/master/adazza-bootstrap.gradle'
+apply from: "https://raw.githubusercontent.com/adazza/adazza-gradle/$gradleBranch/adazza-spark-job.gradle"
+//apply from: '../adazza-gradle/adazza-spark-job.gradle'
+apply from: "https://raw.githubusercontent.com/adazza/adazza-gradle/$gradleBranch/adazza-dependency-management.gradle"
+//apply from: '../adazza-gradle/adazza-dependency-management.gradle'
+
+dependencies {
+    compile group: 'org.scalatest', name: "scalatest_$scalaVersion"
+    compile group: 'org.apache.spark', name: 'spark-core_2.11'
+    compile group: 'org.apache.spark', name: 'spark-sql_2.11'
+    compile group: 'org.apache.spark', name: 'spark-mllib_2.11'
+
+    testCompile group: 'org.scalatest', name: "scalatest_$scalaVersion"
+    testCompile group: 'junit', name: 'junit'
+}
+
+test {
+    testLogging {
+        events = ['standard_out', 'standard_error', 'passed', 'skipped', 'failed']
+    }
+}
 
 
